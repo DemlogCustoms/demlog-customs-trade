@@ -26,7 +26,7 @@ export function TradeEnquiryForm({ lang }: { lang: "en" | "fr" }) {
       const company = String(data.get("company_name") || "").replace(/[\r\n]+/g, " ").trim();
       const product = String(data.get("product") || "").replace(/[\r\n]+/g, " ").trim();
       data.set("subject", fr ? `Nouvelle demande de commerce international — ${company} — ${product}` : `New International Trade Enquiry — ${company} — ${product}`);
-      const response = await fetch("/", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: new URLSearchParams(Array.from(data.entries()).map(([key, value]) => [key, String(value)])).toString() });
+      const response = await fetch("/__forms.html", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: new URLSearchParams(Array.from(data.entries()).map(([key, value]) => [key, String(value)])).toString() });
       if (!response.ok) throw new Error("Submission failed");
       setSent(true);
       window.dispatchEvent(new CustomEvent("demlog-event", { detail: "trade_enquiry_submit" }));
@@ -39,7 +39,7 @@ export function TradeEnquiryForm({ lang }: { lang: "en" | "fr" }) {
 
   if (sent) return <div className="success" role="status"><strong>{fr ? "Merci. Votre demande commerciale a été reçue." : "Thank you. Your trade enquiry has been received."}</strong><p>{fr ? "Demlog examinera les renseignements fournis et communiquera avec vous si l’occasion correspond aux produits, aux quantités et aux marchés actuellement considérés." : "Demlog will review the information provided and follow up when the opportunity aligns with the products, quantities and markets currently under consideration."}</p></div>;
 
-  return <form className="lead-form" name={`international-trade-${lang}`} method="POST" action="/" data-netlify="true" data-netlify-honeypot="company_url" onSubmit={submit}>
+  return <form className="lead-form" name={`international-trade-${lang}`} method="POST" action="/__forms.html" data-netlify="true" data-netlify-honeypot="company_url" onSubmit={submit}>
     <input type="hidden" name="form-name" value={`international-trade-${lang}`} />
     <input type="hidden" name="subject" />
     {attributionFields.map(name => <input key={name} type="hidden" name={name} />)}
