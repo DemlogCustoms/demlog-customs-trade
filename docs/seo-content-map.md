@@ -12,7 +12,7 @@
 | CARM / GCRA and RPP | `/en/carm-rpp` | `/fr/carm-rpp` |
 | First-time importer | `/en/first-time-importers` | `/fr/first-time-importers` |
 | Non-resident importer | `/en/non-resident-importers` | `/fr/non-resident-importers` |
-| $50 flat-rate customs clearance pricing | `/en/pricing` | `/fr/pricing` |
+| Customs brokerage pricing | `/en/pricing` | `/fr/pricing` |
 | PARS tracker | `/en/pars-tracker` | `/fr/pars-tracker` |
 
 Internal linking follows a hub-and-spoke model: home → service hub → individual services → clearance form; pricing → clearance form; articles → relevant service → request form; industries → regulated goods and classification pages.
